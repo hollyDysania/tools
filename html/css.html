@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<style>
+.align-center{
+  text-align: center;
+}
+/* 动画类 start */
+/* loading start */
+@keyframes bouncing {
+  to{
+    opacity: 0.1;
+    transform: translateY(-1rem)
+  }
+}
+.loading{
+  /* 主轴居中 */
+  display: flex;
+  justify-content: center;
+}
+.loading > div{
+  width: 1rem;
+  height: 1rem;
+  margin: 3rem 0.2rem;
+  background: #8385aa;
+  border-radius: 50%;
+  animation: bouncing .6s infinite alternate;
+  /* infinite 无数次  alternate 动画来回往返*/
+}
+.loading > div:nth-child(2){
+  /* 延迟.2s */
+  animation-delay: 0.2s;
+}
+.loading > div:nth-child(3){
+  /* 延迟.3s */
+  animation-delay: 0.4s;
+}
+/* loading end */
+
+/* 圈圈loading start */
+@keyframes donut-spin{
+  /* 0 -360 旋转 */
+  0% {
+    transform: rotate(0deg)
+  }
+  100%{
+    transform: rotate(360deg)
+  }
+}
+.donut{
+  margin: 0 auto;
+  border: 4px solid rgba(0,0,0,0.1);
+  border-left-color: #7983ff;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  animation: donut-spin 1s linear infinite;
+}
+/* 圈圈loading end */
+
+/* 按钮悬停效果 start */
+/* 利用透明的伪元素 定位于上下 宽度变化 */
+.button-border{
+  margin: 3rem;
+}
+.button{
+  background-color: #0094ff;
+  border: none;
+  color: #fff;
+  outline: none;
+  padding: 12px 40px 10px;
+  position: relative;
+}
+.button:before,
+.button:after{
+  border: 0 solid transparent;
+  transition: all .25s;
+  content: '';
+  height: 24px;
+  width: 24px;
+  position: absolute;
+}
+.button:before{
+  border-bottom: 2px solid #0094ff;
+  bottom: -5px;
+  right: 0px;
+}
+.button:after{
+  border-top: 2px solid #0094ff;
+  top: -5px;
+  left: 0px;
+}
+.button:hover:after,
+.button:hover:before{
+  width: 100%;
+}
+/* 按钮悬停效果 end */
+
+/* 文字悬停条 start */
+.text-hover{
+  display: inline-block;
+  margin: 0 auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #0087ca;
+  margin-bottom: 3rem;
+}
+.text-hover::after{
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  /* 缩放0不可见 */
+  transform: scaleX(0);
+  background-color: #0087ca;
+  transform-origin: bottom right;
+  transition: transform .25s ease-out;
+}
+/* hover时从左至右 */
+.text-hover:hover::after{
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+/* 文字悬停条 end */
+/* 交互类 start */
+
+/* 自定义文本选择样式 start */
+.text-selection::selection{
+  background-color: aquamarine;
+  color: black;
+}
+.text-selection{
+  margin: 3rem 0;
+  color: #0094ff;
+}
+/* 自定义文本选择样式 end */
+
+/* 禁止选中文字 start */
+.unselectable{
+  user-select: none;
+  color: #0094ff;
+  margin-bottom: 3rem;
+}
+/* 禁止选中文字 end */
+/* 交互类 end */
+
+/* 展示类 start */
+/* 超出文字省略 start */
+.truncate-text{
+  margin: 3rem auto;
+  width: 200px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+/* 超出文字省略 end */
+
+/* 小三角 start */
+.triangle{
+  margin: 3rem auto;
+  width: 0;
+  height: 0;
+  border-top: 12px solid #333;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+}
+/* 小三角 end */
+/* 展示类 end */
+</style>
+<body>
+  <!-- 动画类 start -->
+  <h2 class="align-center">动画类</h2>
+  <!-- loading start -->
+  <div class="loading">
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+  <!-- loading end -->
+
+  <!-- 圈圈loading start -->
+  <div class="donut"></div>
+  <!-- 圈圈loading end -->
+
+  <!-- 按钮边缘动画 start -->
+  <div class="button-border align-center">
+    <button class="button">submit</button>
+  </div>
+  <!-- 按钮边缘动画 end -->
+
+  <!-- 文字悬停 start -->
+  <p class="text-hover">Hover this text to see the effect!</p>
+  <!-- 文字悬停 end -->
+
+  <!-- 交互类 start -->
+  <h2 class="align-center">交互类</h2>
+  <!-- 交互类 end -->
+
+  <!-- 自定义文本选择 start -->
+  <p class="text-selection align-center">请复制这行文字,自定义文本选择效果(存在兼容问题)</p>
+  <!-- 自定义文本选择 end -->
+
+  <!-- 禁止选中文字 start -->
+  <p class="unselectable align-center">请试图复制这行文字(禁止选中文本)</p>
+  <!-- 禁止选中文字 end -->
+
+  <!-- 展示类 start -->
+  <h2 class="align-center">展示类</h2>
+  <!-- 展示类 end -->
+  
+  <!-- 超出文字省略号 start -->
+  <p class="truncate-text">这行文字较多但只展示部分啦啦啦啦</p>
+  <!-- 超出文字省略号 end -->
+
+  <!-- 一个小三角 start -->
+  <div class="triangle"></div>
+  <!-- 一个小三角 end -->
+  
+</body>
+</html>
